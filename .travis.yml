@@ -14,4 +14,10 @@ after_success:
   - docker build -t irishjimdegriz/multi-nginx ./nginx
   - docker build -t irishjimdegriz/multi-server ./server
   - docker build -t irishjimdegriz/multi-worker ./worker
-
+  # Login to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to Docker hub
+  - docker push irishjimdegriz/multi-client
+  - docker push irishjimdegriz/multi-nginx
+  - docker push irishjimdegriz/multi-server
+  - docker push irishjimdegriz/multi-worker
