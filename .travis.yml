@@ -21,3 +21,15 @@ after_success:
   - docker push irishjimdegriz/multi-nginx
   - docker push irishjimdegriz/multi-server
   - docker push irishjimdegriz/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "multi-docker"
+  end: "MultiDocker-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-245471067308"
+  bucket_path: "docker-multi"
+  on: 
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
